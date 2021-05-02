@@ -1,0 +1,263 @@
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@100;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Antonio", sans-serif;
+  overflow-x: hidden;
+  background: #292929;
+  color: #fff;
+}
+
+button {
+  font-family: inherit;
+  font-family: "Roboto", sans-serif;
+}
+
+p,
+li {
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: 250ms ease-in;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.heading {
+  text-align: center;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  transition: 1000ms ease-out;
+}
+
+.heading.scale {
+  transform: scale(0) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.heading span {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.heading h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.heading button,
+.gallery-popup button {
+  padding: 10px 25px;
+  background: transparent;
+  border: solid 1px #fff;
+  border-radius: 5px;
+  outline: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 300ms ease-in;
+}
+
+.heading button:hover,
+.gallery-popup button:hover {
+  background: #fff;
+  color: #000;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  max-width: 1440px;
+  padding: 1rem 30px;
+  margin: auto;
+  display: grid;
+  place-content: center;
+  transform: scale(0);
+  opacity: 0;
+  transition: 1000ms ease-out;
+  background: inherit;
+}
+
+.content.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.content span {
+  font-size: 1.5rem;
+}
+
+.content .animal {
+  display: flex;
+  margin: 3rem 0;
+}
+
+.content .animal .animal-img,
+.content .animal .animal-info {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.content .animal .animal-img {
+  align-items: center;
+}
+
+.content .animal .animal-img img {
+  width: 50%;
+  max-height: 500px;
+  margin-bottom: 2rem;
+}
+
+.content .animal .animal-img button {
+  max-width: 300px;
+  margin: 1rem auto 0 auto;
+}
+
+.content .animal .animal-info {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.content .animal .animal-info .info {
+  margin-bottom: 20px;
+}
+
+.content .animal .animal-info .info h3 {
+  margin-bottom: 15px;
+}
+
+.content .animal .animal-info .info ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.content .animal .animal-info .info ul li {
+  margin: 0 2rem 3px 0;
+  list-style: none;
+  position: relative;
+}
+
+.content .animal .animal-info .info ul [data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -110%);
+  background: #292929;
+  padding: 5px;
+  border: solid 1px #fff;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  display: none;
+}
+
+.content .animal .animal-info .info ul [data-tooltip]:hover::after {
+  display: block;
+}
+
+.content .animal .animal-info .info .habitat-img {
+  display: flex;
+  padding-top: 10px;
+}
+
+.content .animal .animal-info .info .habitat-img img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.animal-info-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 250ms ease-in;
+  background: #292929;
+  border: solid #fff 2px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  width: 90%;
+  max-width: 350px;
+  min-height: 300px;
+  z-index: 2;
+}
+
+.animal-info-popup.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.animal-info-popup .animal-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.animal-info-popup .animal-info ul li {
+  list-style: none;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.animal-info-popup button {
+  padding: 5px 0;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  .content .animal {
+    flex-direction: column;
+  }
+
+  .content .animal .animal-info {
+    width: 100%;
+  }
+
+  .content .animal .animal-img {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .content .animal .animal-img img {
+    width: 80%;
+    max-width: 450px;
+  }
+}
